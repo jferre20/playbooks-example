@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Get date before change TZ
+      ansible.builtin.shell: date
+      register: timezone
+
+    - ansible.builtin.debug:
+        var: timezone.stdout
+
+    - name: Set timezone correctly
+      community.general.timezone:
+        name: America/Sao_Paulo
+   
+    - name: Get date after change TZ
+      ansible.builtin.shell: date
+      register: timezone2
+ 
+    - ansible.builtin.debug:
+        var: timezone2.stdout

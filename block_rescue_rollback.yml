@@ -1,0 +1,52 @@
+---
+- hosts: "{{ host }}"
+  tasks:
+    - name: Create block to configure httpd
+      block:
+        - name: Install httpd
+          ansible.builtin.dnf:
+            name: httpd
+            state: present
+
+        - name: Start service httpd
+          ansible.builtin.service:
+            name: httpd
+            state: started
+
+        - name: Copy http file
+          ansible.builtin.copy:
+            content: |
+              Hello World! This is a http file example
+            dest: /var/www/html/index.html
+
+        - name: Restart service
+          ansible.builtin.service:
+            name: httpd
+            state: restarted
+
+        - name: Get content page
+          delegate_to: bastion
+          ansible.builtin.uri:
+            url: http://srv02
+            return_content: true
+          register: get_content
+
+        - name: Debug content html
+          ansible.builtin.debug:
+            var: get_content.content
+
+      rescue:
+        - name: Remove http file
+          ansible.builtin.file:
+            path: /var/www/html/index.html
+            state: absent
+
+        - name: Stop service httpd
+          ansible.builtin.service:
+            name: httpd
+            state: stopped
+        
+        - name: Uninstall httpd
+          ansible.builtin.dnf:
+            name: httpd
+            state: absent
