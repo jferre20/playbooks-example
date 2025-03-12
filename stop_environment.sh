@@ -22,8 +22,3 @@ then
 else
    echo 'NADA'
 fi
-
-#ssh aap01 "automation-controller-service $STAT && poweroff"
-#ssh db01 "systemctl $STAT postgresql && poweroff"
-#ssh hub01 "systemctl $STAT nginx && poweroff"
-#ssh eda01 "systemctl $STAT nginx && poweroff"
