@@ -17,8 +17,8 @@ elif [ $PRODUCT = 'aap' ] && [ $STAT = 'stop' ];
 then
    COMMAND="automation-controller-service $STAT && $MACHINE"
    ssh aap01 $COMMAND
-   ssh db01 systemctl $STAT postgresql && $MACHINE
    for srv in {hub01,eda01}; do ssh $srv systemctl $STAT nginx && $MACHINE; done
+   ssh db01 systemctl $STAT postgresql && $MACHINE
 else
    echo 'NADA'
 fi
