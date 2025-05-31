@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - shell: "cat file_line"
+      register: results
+
+    - debug:
+        var: results.stdout_lines[1]
