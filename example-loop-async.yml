@@ -1,0 +1,19 @@
+- hosts: localhost
+  tasks:
+    - name: Execute a command
+      ansible.builtin.shell: "sleep {{ item }}"
+      loop:
+        - 50
+        - 1
+      async: 60
+      poll: 0
+      register: loop_status
+
+    - name: Wait to finish the commands
+      ansible.builtin.async_status:
+        jid: "{{ item.ansible_job_id }}"
+      register: job_result
+      until: job_result.finished
+      delay: 5
+      retries: 1
+      loop: "{{ loop_status.results }}"
