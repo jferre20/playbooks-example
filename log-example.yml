@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Running a shell script
+      ansible.builtin.shell: ./sleep10.sh
+      register: sleep_result
+
+    - name: Create file log
+      ansible.builtin.lineinfile:
+        line: "{{ ansible_date_time.iso8601 }} {{ sleep_result.stdout }}"
+        path: sleep_result.log
+        create: yes

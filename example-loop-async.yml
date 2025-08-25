@@ -1,13 +1,29 @@
 - hosts: localhost
+  gather_facts: false
   tasks:
     - name: Execute a command
-      ansible.builtin.shell: "sleep {{ item }}"
+      ansible.builtin.shell: "./{{ item }}"
       loop:
-        - 50
-        - 1
+        - one.sh
+        - two.sh
       async: 60
       poll: 0
-      register: loop_status
+      register: loop_status-b
+
+    #- debug:
+    #    var: loop_status
+
+    #- name: Execute one
+    #  shell: ./one.sh
+    #  async: 60
+    #  poll: 0
+    #  register: one_shell
+
+    #- name: Execute one
+    #  shell: ./two.sh
+    #  async: 60
+    #  poll: 0
+    #  register: two_shell
 
     - name: Wait to finish the commands
       ansible.builtin.async_status:
@@ -15,5 +31,7 @@
       register: job_result
       until: job_result.finished
       delay: 5
-      retries: 1
-      loop: "{{ loop_status.results }}"
+      retries: 20
+      loop: "{{ loop_status-b.results }}"
+        #- "{{ one_shell }}"
+        #- "{{ two_shell }}"
