@@ -1,0 +1,17 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Get hostname
+      shell: hostname
+      register: host_machine
+
+    - debug:
+        var: host_machine.stdout
+
+    - name: Get OS Version
+      shell: "cat /etc/os-release | grep VERSION_ID | cut -d '=' -f2"
+      register: os_version
+
+    - debug:
+        var: os_version.stdout | replace('"','')
