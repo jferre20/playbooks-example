@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Recursively find /tmp files older than 2 days
+      ansible.builtin.find:
+        paths: /tmp/teste
+      register: files_found
+    
+    - set_fact:
+        files: "{{ files_found.files | map(attribute='path') }}"
+
+    - set_fact:
+        list_files: "{{ list_files | default([]) + [ item.split('/')[3] ] }}"
+      loop: "{{ files }}"
+
+    - debug:
+        msg: "{{ list_files }}"
+
+  handlers:
+    - name: Teste
+      ansible.builtin.shell: "echo 'OK'"
