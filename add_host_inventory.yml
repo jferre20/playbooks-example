@@ -28,4 +28,8 @@
 
     - shell: set
 
-    - shell: env
+    - shell: df -h
+
+    - shell: ls -lha
+
+    - shell: find .
