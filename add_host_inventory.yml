@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: bastion 
   gather_facts: false
   tasks:
     - shell: hostname
