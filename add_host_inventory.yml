@@ -22,4 +22,4 @@
   gather_facts: false
   tasks:
     - ansible.builtin.debug: 
-        msg: "{{ lookup('env', 'FOREMAN_USER') }}"
+        msg: "{{ lookup('env', 'satellitCred_username') }}"
