@@ -21,4 +21,5 @@
   connection: local
   gather_facts: false
   tasks:
-    - ansible.builtin.shell: env
+    - ansible.builtin.debug: 
+        msg: "{{ lookup('env', 'FOREMAN_INI_PATH') }}"
