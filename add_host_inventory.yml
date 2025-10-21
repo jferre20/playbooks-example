@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - shell: hostname
+      register: host_name
+
+    - debug:
+        var: host_name.stdout
+
+    - add_host:
+        name: "{{ item }}"
+        groups: new-machine
+      with_items:
+        - "{{ new_host }}"
+
+- hosts: new-machine
+  gather_facts: false
+  tasks:
+    - shell: hostname
+      register: host_name
+ 
+    - debug:
+        var: host_name.stdout
