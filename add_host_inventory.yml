@@ -23,3 +23,5 @@
   tasks:
     - ansible.builtin.debug: 
         msg: "{{ lookup('env', 'FOREMAN_INIT_PATH') }}"
+
+    - shell: env
