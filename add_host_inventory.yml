@@ -18,6 +18,7 @@
 #        - "{{ new_host }}"
 
 - hosts: localhost
+  connection: local
   gather_facts: false
   tasks:
     - ansible.builtin.shell: env
