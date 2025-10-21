@@ -17,7 +17,7 @@
 #      with_items:
 #        - "{{ new_host }}"
 
-- hosts: localhost
+- hosts: all
   connection: local
   gather_facts: false
   tasks:
