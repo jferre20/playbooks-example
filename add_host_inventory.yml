@@ -22,4 +22,4 @@
   gather_facts: false
   tasks:
     - ansible.builtin.debug: 
-        msg: "{{ lookup('env', 'SATELLITE_USERNAME') }}"
+        msg: "{{ lookup('env', 'FOREMAN_INIT_PATH') }}"
