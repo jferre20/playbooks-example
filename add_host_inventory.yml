@@ -1,21 +1,21 @@
 ---
-- hosts: bastion 
-  gather_facts: false
-  tasks:
-    - ansible.builtin.shell: hostname
-      register: host_name
-
-    - ansible.builtin.debug:
-        var: host_name
-
-    - ansible.builtin.debug:
-        var: host_name.stdout
-
-    - ansible.builtin.add_host:
-        name: "{{ item }}"
-        groups: new-machine
-      with_items:
-        - "{{ new_host }}"
+#- hosts: bastion 
+#  gather_facts: false
+#  tasks:
+#    - ansible.builtin.shell: hostname
+#      register: host_name
+#
+#    - ansible.builtin.debug:
+#        var: host_name
+#
+#    - ansible.builtin.debug:
+#        var: host_name.stdout
+#
+#    - ansible.builtin.add_host:
+#        name: "{{ item }}"
+#        groups: new-machine
+#      with_items:
+#        - "{{ new_host }}"
 
 - hosts: new-machine
   gather_facts: false
