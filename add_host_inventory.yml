@@ -22,6 +22,4 @@
   gather_facts: false
   tasks:
     - ansible.builtin.debug: 
-        msg: "{{ lookup('env', 'FOREMAN_INIT_PATH') }}"
-
-    - shell: env
+        msg: "{{ lookup('env', 'FOREMAN_USER') }}"
