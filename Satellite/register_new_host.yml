@@ -5,7 +5,7 @@
   tasks:
     - name: Create inventory dynamic
       ansible.builtin.add_host:
-        name: "{{ item }}"
+        name: "{{ item }}.{{ domain }}"
         group: new_hosts
       with_items:
         - "{{ new_hosts }}"
@@ -41,7 +41,7 @@
   - name: Register server on Satellite
     community.general.redhat_subscription:
       state: present
-      activationkey: "{{ satellite_ak_rhel8 }}"
+      activationkey: "{{ activation_key }}"
       org_id: "{{ satellite_org }}"
       force_register: true
 
