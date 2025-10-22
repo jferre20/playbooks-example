@@ -1,4 +1,0 @@
----
-- hosts: "{{ vmname }}"
-  tasks:
-    - ping:
