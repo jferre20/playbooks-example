@@ -1,15 +1,20 @@
 ---
 - hosts: localhost
+  connection: local
+  gather_facts: false
   tasks:
     - name: Split variable loop
       set_fact:
-        #servers: "{{ hosts_list | split('\n') }}"
-        servers: "{{ hosts_list }}"
+        servers: "{{ hosts_list | split('\n') }}"
+        #servers: "{{ hosts_list }}"
 
-    - shell: 'date +%Y-%m-%T'
-      register: date
+    - debug:
+        var: servers
+
+    #- shell: 'date +%Y-%m-%T'
+    #  register: date
    
-    - name: Debug name snapshot
-      ansible.builtin.debug:
-        msg: "{{date.stdout}} - snap_{{ item }}_{{ lookup('pipe', 'date --utc +%Y-%m-%d-%T') }}"
-      loop: "{{ servers }}"
+    #- name: Debug name snapshot
+    #  ansible.builtin.debug:
+    #    msg: "{{date.stdout}} - snap_{{ item }}_{{ lookup('pipe', 'date --utc +%Y-%m-%d-%T') }}"
+    #  loop: "{{ servers }}"
