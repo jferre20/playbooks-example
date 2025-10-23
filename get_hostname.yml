@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Get hostname
+      ansible.builtin.shell: hostname
+      register: name_vm
+
+    - debug:
+        var: name_vm.stdout
