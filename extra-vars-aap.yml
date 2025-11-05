@@ -7,11 +7,11 @@
       ansible.builtin.shell: "cat /etc/os-release | grep 'PRETTY_NAME' | cut -d '=' -f2"
       register: os_release_name
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         os_release: "{{ os_release_name.stdout }}"
 
     - ansible.builtin.debug:
         var: os_release
 
-    - debug:
+    - ansible.builtin.debug:
         var: os_name
