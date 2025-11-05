@@ -4,4 +4,7 @@
   gather_facts: false
   tasks:
     - debug:
-        var: extra_var_value
+        var: extra_var_playbook
+
+    - debug:
+        var: extra_var_aap
