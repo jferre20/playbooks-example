@@ -3,4 +3,4 @@
   connection: local
   tasks:
     - debug:
-        var: inventory_hostname
+        var: hostvars['localhost']
