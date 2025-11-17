@@ -3,10 +3,10 @@
   connection: local
   tasks:
     - debug:
-        var: inventory_hostname 
+        var: hostvars[inventory_hostname]
 
     - debug:
         msg: |
-          "{{ hostvars[item].connection }}"
-          "{{ hostvars[item].token_ocp }}"
+          "{{ item.connection }}"
+          "{{ item.token_ocp }}"
       loop: "{{ inventory_hostname }}"
