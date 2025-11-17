@@ -6,3 +6,4 @@
         msg: |
           "{{ hostvars['localhost'].connection }}"
           "{{ hostvars['localhost'].token_ocp }}"
+          "{{ inventory_hostname.connection }}"
