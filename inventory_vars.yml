@@ -3,4 +3,6 @@
   connection: local
   tasks:
     - debug:
-        var: hostvars['localhost'].connection
+        msg: |
+          "{{ hostvars['localhost'].connection }}"
+          "{{ hostvars['localhost'].token_ocp }}"
