@@ -2,11 +2,9 @@
 - hosts: all
   connection: local
   tasks:
-    - debug:
-        var: hostvars['inventory_hostname']
 
     - debug:
         msg: |
-          "{{ item.connection }}"
-          "{{ item.token_ocp }}"
+          "{{ hostvars[item] }}"
+          "{{ hostvars[item] }}"
       loop: "{{ inventory_hostname }}"
