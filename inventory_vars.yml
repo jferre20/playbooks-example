@@ -2,11 +2,8 @@
 - hosts: all
   connection: local
   tasks:
-    - shell: env
-      register: var_env
-
     - debug:
-        var: var_env
+        var: ansible_facts
 
     - debug:
         msg: |
