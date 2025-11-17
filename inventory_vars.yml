@@ -9,3 +9,13 @@
           "{{ hostvars[item].environment['token_ocp'] }}"
       loop: 
         - "{{ inventory_hostname }}"
+
+    - kubernets.core.k8s:
+        host: https://api.cluster-jrgf4.jrgf4.sandbox1307.opentlc.com:6443
+        api_key: sha256~4-XfmDHxRZn76T206SLNKHGDZ2LqwM7vyRHZnV2iYAE
+        validate_certs: false
+        kind: Pod
+      register: pod_list
+
+    - debug:
+        var: pod_list.stdout_lines
