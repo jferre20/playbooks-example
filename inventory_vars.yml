@@ -7,6 +7,6 @@
 
     - debug:
         msg: |
-          "{{ hostvars['item'].connection }}"
-          "{{ hostvars['item'].token_ocp }}"
+          "{{ hostvars[item].connection }}"
+          "{{ hostvars[item].token_ocp }}"
       loop: "{{ inventory_hostname }}"
