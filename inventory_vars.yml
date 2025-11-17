@@ -9,4 +9,4 @@
         msg: |
           "{{ hostvars['item'].connection }}"
           "{{ hostvars['item'].token_ocp }}"
-      loop: "{{ groups['all'] }}"
+      loop: "{{ inventory_hostname }}"
