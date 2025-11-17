@@ -2,6 +2,12 @@
 - hosts: all
   connection: local
   tasks:
+    - shell: env
+      register: var_env
+
+    - debug:
+        var: var_env
+
     - debug:
         msg: |
           "{{ hostvars['localhost'].connection }}"
