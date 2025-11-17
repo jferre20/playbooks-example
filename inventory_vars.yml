@@ -6,3 +6,5 @@
         msg: |
           "{{ hostvars[host].connection }}"
           "{{ hostvars[host].token_ocp }}"
+          "{{ ansible_facts['connection'] }}"
+          "{{ ansible_facts['token_ocp'] }}"
