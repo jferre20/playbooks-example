@@ -3,7 +3,7 @@
   connection: local
   tasks:
     - debug:
-        var: hostvars
+        var: inventory_hostname 
 
     - debug:
         msg: |
