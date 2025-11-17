@@ -1,9 +1,13 @@
 ---
 - hosts: localhost
   connection: local
+  
+  vars:
+    API_URL: "{{ lookup('env', 'K8S_AUTH_HOST') }}" 
+    API_TOKEN: "{{ lookup('env', 'K8S_AUTH_API_KEY') }}" 
   tasks:
     - shell: env
       register: var_env
 
     - debug:
-        var: var_env
+        msg: "Api URL: {{ API_URL }} Token: {{ API_TOKEN }}"
