@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - shell: env
+      register: var_env
+
+    - debug:
+        var: var_env
