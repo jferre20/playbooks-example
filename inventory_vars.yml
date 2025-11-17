@@ -4,6 +4,5 @@
   tasks:
     - debug:
         msg: |
-          "{{ hostvars['localhost'].connection }}"
-          "{{ hostvars['localhost'].token_ocp }}"
-          "{{ inventory_hostname.connection }}"
+          "{{ hostvars[host].connection }}"
+          "{{ hostvars[host].token_ocp }}"
