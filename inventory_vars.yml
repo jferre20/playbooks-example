@@ -7,5 +7,6 @@
 
     - debug:
         msg: |
-          "{{ hostvars['localhost'].connection }}"
-          "{{ hostvars['localhost'].token_ocp }}"
+          "{{ hostvars['item'].connection }}"
+          "{{ hostvars['item'].token_ocp }}"
+      loop: "{{ group['all'] }}"
