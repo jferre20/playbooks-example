@@ -9,5 +9,3 @@
         msg: |
           "{{ hostvars['localhost'].connection }}"
           "{{ hostvars['localhost'].token_ocp }}"
-          "{{ ansible_facts['connection'] }}"
-          "{{ ansible_facts['token_ocp'] }}"
