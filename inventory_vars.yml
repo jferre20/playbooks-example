@@ -7,4 +7,5 @@
         msg: |
           "{{ hostvars[item] }}"
           "{{ hostvars[item] }}"
-      loop: "{{ inventory_hostname }}"
+      loop: 
+        - "{{ inventory_hostname }}"
