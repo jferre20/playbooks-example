@@ -6,4 +6,4 @@
         msg: |
           "{{ hostvars['item'].connection }}"
           "{{ hostvars['item'].token_ocp }}"
-      loop: "{{ group['all'] }}"
+      loop: "{{ groups['all'] }}"
