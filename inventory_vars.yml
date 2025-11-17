@@ -3,4 +3,4 @@
   connection: local
   tasks:
     - debug:
-        var: hostvars['localhost']
+        var: hostvars['localhost'].connection
