@@ -5,7 +5,7 @@
   tasks:
     - name: Split variable loop
       set_fact:
-        servers: "{{ hosts_list | split('\n') }}"
+        servers: "{{ hosts_list | split(',') }}"
 
     - name: Create inventory dynamic
       ansible.builtin.add_host:
