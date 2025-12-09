@@ -3,12 +3,16 @@
   connection: local
   gather_facts: false
   tasks:
+    - name: Split variable loop
+      set_fact:
+        servers: "{{ hosts_list | split('\n') }}"
+
     - name: Create inventory dynamic
       ansible.builtin.add_host:
         name: "{{ item }}.{{ domain }}"
         group: new_hosts
       with_items:
-        - "{{ new_hosts }}"
+        - "{{ servers }}"
 
 - name: Register New RHEL Servers
   hosts: new_hosts
