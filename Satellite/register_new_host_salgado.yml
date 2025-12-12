@@ -19,7 +19,7 @@
   tasks:
   - name: Working on Server
     ansible.builtin.debug:
-      msg: "Host: {{ hostname }} | SO: {{ ansible_distribution }} {{ ansible_distribution_major_version }}"
+      msg: "Host: {{ inventory_hostname }} | SO: {{ ansible_distribution }} {{ ansible_distribution_major_version }}"
     when: ansible_distribution == 'RedHat'
 
   - name: Configuring hostname with FQDN
