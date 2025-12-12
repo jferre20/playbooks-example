@@ -13,6 +13,7 @@
                  
 - name: Register New RHEL Servers
   hosts: new_hosts
+  connection: local
   vars_files:
     - vault/vault.yml
    
