@@ -6,7 +6,7 @@
   tasks:
     - name: Create inventory dynamic
       ansible.builtin.add_host:
-        name: "{{ hostname }}"
+        name: "{{ item }}"
         group: new_hosts
       with_items:
         - "{{ hostname }}"
