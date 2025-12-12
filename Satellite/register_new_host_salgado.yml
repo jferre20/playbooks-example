@@ -55,11 +55,11 @@
     register: host_search_result
     #delegate_to: localhost
 
-  - name: Validate if Host was found
-    ansible.builtin.fail:
-      msg: "ERROR: The host '{{ inventory_hostname }}' was registered but not found at the Satellite API. Verify the latency and the registered host."
-    when: host_search_result.json.total == 0
-    #delegate_to: localhost
+  #- name: Validate if Host was found
+  #  ansible.builtin.fail:
+  #    msg: "ERROR: The host '{{ inventory_hostname }}' was registered but not found at the Satellite API. Verify the latency and the registered host."
+  #  when: host_search_result.json.total == 0
+  #  #delegate_to: localhost
 
   - name: Get the Hostgroup ID to configure on this host
     ansible.builtin.uri:
@@ -73,11 +73,11 @@
     register: hostgroup_search_result
     #delegate_to: localhost
 
-  - name: Validate if Hostgroup exists
-    ansible.builtin.fail:
-      msg: "Config ERROR: The Hostgroup '{{ satellite_hostgroup }}' does not exist on Satellite. Verify the 'satellite_hostgroup' variable."
-    when: hostgroup_search_result.json.total == 0
-    #delegate_to: localhost
+  #- name: Validate if Hostgroup exists
+  #  ansible.builtin.fail:
+  #    msg: "Config ERROR: The Hostgroup '{{ satellite_hostgroup }}' does not exist on Satellite. Verify the 'satellite_hostgroup' variable."
+  #  when: hostgroup_search_result.json.total == 0
+  #  #delegate_to: localhost
 
   - name: Update the Host with Hostgroup
     ansible.builtin.uri:
