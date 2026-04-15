@@ -8,7 +8,6 @@
           environment:
             SECRET_KEY: "{{ password_encrypt }}"
           register: encrypt_result
-          no_log: true
 
         - name: Set a variable for the workflow
           ansible.builtin.set_stats:
@@ -23,7 +22,6 @@
           environment:
             SECRET_KEY: "{{ password_encrypt }}"
           register: decrypt_result
-          no_log: true
 
         - name: Use the variable from the previous node
           ansible.builtin.debug:
