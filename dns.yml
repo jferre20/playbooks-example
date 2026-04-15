@@ -1,0 +1,33 @@
+---
+- hosts: localhost
+  gather_facts: false
+#  vars:
+#    pdns_api_url: "http://10.8.68.114"
+#    pdns_api_key: MDdkYnRua3owSWQwcHk4 
+#    target_zone: "teste.jferre.local"
+
+  tasks:
+#    - name: Create a Record in a Zone in PowerDNS Admin
+#      kenmoini.powerdns_admin.record:
+#        pdns_admin_url: "{{ pdns_api_url }}" 
+#        pdns_admin_api_key: "{{ pdns_api_key }}"
+#        zone: "{{ target_zone }}"
+#        record_name: "joao.{{ target_zone }}."
+#        record_type: A
+#        values:
+#          - content: 192.0.2.1
+#            disabled: false
+#            comment: "Primary Web Server"
+#            account: "admin"
+#        ttl: 3600
+#        state: present
+
+    - name: Create an A record
+      stemid.powerdns.powerdns_record:
+        pdns_api_url: "{{ pdns_api_url }}" 
+        pdns_api_key: "{{ pdns_api_key }}"
+        name: "joao.{{ target_zone }}."
+        type: A
+        content: 192.168.1.234
+        state: present
+        zone: "{{ target_zone }}"
