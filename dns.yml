@@ -34,7 +34,7 @@
       stemid.powerdns.powerdns_record:
         pdns_api_url: "{{ pdns_api_url }}" 
         pdns_api_key: "{{ pdns_api_key }}"
-        name: "{{ item.split(',')[0] }}"
+        name: "{{ item.split(',')[0] }}.{{ target_zone }}"
         type: A
         content: "{{ item.split(',')[1] }}"
         state: present
