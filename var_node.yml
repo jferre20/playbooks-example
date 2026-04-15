@@ -2,13 +2,30 @@
 - hosts: localhost
   gather_facts: false
   tasks:
-    - name: Set a variable for the workflow
-      ansible.builtin.set_stats:
-        data:
-          bola: "jabulani"
+    - block:
+        - shell: |
+            echo -n "jabulani" | openssl enc -aes-256-cbc -a -salt -pbkdf2 -pass env:SECRET_KEY
+          environment:
+            SECRET_KEY: "{{ password_encrypt }}"
+          register: encrypt_result
+          no_log: true
+
+        - name: Set a variable for the workflow
+          ansible.builtin.set_stats:
+            data:
+              bola: "{{ encrypt_result.stdout }}"
       when: node == "first"
 
-    - name: Use the variable from the previous node
-      ansible.builtin.debug:
-        msg: "The value is {{ bola }}"
+    - block:
+        - name: Descriptografar o dado recebido do artefato
+          ansible.builtin.shell: |
+            echo "{{ bola  }}" | openssl enc -aes-256-cbc -a -d -salt -pbkdf2 -pass env:SECRET_KEY
+          environment:
+            SECRET_KEY: "{{ password_encrypt }}"
+          register: decrypt_result
+          no_log: true
+
+        - name: Use the variable from the previous node
+          ansible.builtin.debug:
+            msg: "The value is {{ decrypt_result.stdout }}"
       when: node == "second"
