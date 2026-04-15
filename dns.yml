@@ -23,8 +23,12 @@
 #        ttl: 3600
 #        state: present
 
+    - set_fact:
+        list_rec: "{{ records | split('\n') }}"
+
     - debug:
-        var: records | split('\n')
+        var: item
+      loop: "{{ list_rec }}"
 
 #    - name: Create an A record
 #      stemid.powerdns.powerdns_record:
