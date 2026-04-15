@@ -24,7 +24,7 @@
 #        state: present
 
     - debug:
-        var: records | split('\n') | list
+        var: records | split('\n')
 
 #    - name: Create an A record
 #      stemid.powerdns.powerdns_record:
