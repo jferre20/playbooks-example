@@ -23,12 +23,15 @@
 #        ttl: 3600
 #        state: present
 
-    - name: Create an A record
-      stemid.powerdns.powerdns_record:
-        pdns_api_url: "{{ pdns_api_url }}" 
-        pdns_api_key: "{{ pdns_api_key }}"
-        name: "joao.{{ target_zone }}."
-        type: A
-        content: 192.168.1.234
-        state: present
-        zone: "{{ target_zone }}"
+    - debug:
+        var: records
+
+#    - name: Create an A record
+#      stemid.powerdns.powerdns_record:
+#        pdns_api_url: "{{ pdns_api_url }}" 
+#        pdns_api_key: "{{ pdns_api_key }}"
+#        name: "joao.{{ target_zone }}."
+#        type: A
+#        content: 192.168.1.234
+#        state: present
+#        zone: "{{ target_zone }}"
