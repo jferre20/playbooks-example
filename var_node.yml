@@ -17,14 +17,17 @@
       when: node == "first"
 
     - block:
-        - name: Descriptografar o dado recebido do artefato
-          ansible.builtin.shell: |
-            echo "{{ bola  }}" | openssl enc -aes-256-cbc -a -d -salt -pbkdf2 -pass env:SECRET_KEY
-          environment:
-            SECRET_KEY: "{{ password_encrypt }}"
-          register: decrypt_result
+        #- name: Descriptografar o dado recebido do artefato
+        #  ansible.builtin.shell: |
+        #    echo "{{ bola }}" | openssl enc -aes-256-cbc -a -d -salt -pbkdf2 -pass env:SECRET_KEY
+        #  environment:
+        #    SECRET_KEY: "{{ password_encrypt }}"
+        #  register: decrypt_result
 
         - name: Use the variable from the previous node
           ansible.builtin.debug:
-            msg: "The value is {{ decrypt_result.stdout }}"
+            #msg: "The value is {{ decrypt_result.stdout }}"
+            msg: "The value is {{ bola }}"
+          environment:
+            SECRET_KEY: "{{ password_encrypt }}"
       when: node == "second"
