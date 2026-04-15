@@ -14,13 +14,13 @@
         - name: Set a variable for the workflow
           ansible.builtin.set_stats:
             data:
-              bola: "{{ encrypt_result.stdout }}"
+              data_encrypted: "{{ encrypt_result.stdout }}"
       when: node == "first"
 
     - block:
         - name: Descriptografar o dado recebido do artefato
           ansible.builtin.shell: |
-            echo "{{ bola }}" | openssl enc -aes-256-cbc -a -d -salt -pbkdf2 -pass env:SECRET_KEY
+            echo "{{ data_encrypted }}" | openssl enc -aes-256-cbc -a -d -salt -pbkdf2 -pass env:SECRET_KEY
           environment:
             SECRET_KEY: "{{ password_encrypt }}"
           register: decrypt_result
