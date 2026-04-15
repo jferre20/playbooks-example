@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Set a variable for the workflow
+      ansible.builtin.set_stats:
+        data:
+          my_workflow_var: "some_value"
+      when: node == "first"
+
+    - name: Use the variable from the previous node
+      ansible.builtin.debug:
+        msg: "The value is {{ my_workflow_var }}"
+      when: node == "second"
