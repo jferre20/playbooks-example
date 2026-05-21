@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: all
   tasks:
     - name: Get date before change TZ
       ansible.builtin.shell: date
