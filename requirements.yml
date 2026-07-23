@@ -2,3 +2,4 @@
 collections:
   #- name: stemid.powerdns
   - name: community.general
+    version: "8.6.0"
