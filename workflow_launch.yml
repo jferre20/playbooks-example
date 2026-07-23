@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Launch a Workflow with extra_vars without waiting
+      ansible.controller.workflow_launch:
+        controller_host: "{{ aap_hostname }}"
+        controller_username: "{{ aap_username }}"
+        controller_password: "{{ aap_password }}"
+        workflow_template: "[WORKFLOW] Get hostname and config timezone"
+        extra_vars:
+          server: "{{ wf_server }}"
+          timezone: "{{ wf_timezone }}" 
+        wait: false
