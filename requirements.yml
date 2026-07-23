@@ -1,3 +1,4 @@
 ---
 collections:
-  - name: stemid.powerdns
+  #- name: stemid.powerdns
+  - name: community.general
