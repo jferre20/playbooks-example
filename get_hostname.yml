@@ -1,5 +1,5 @@
 ---
-- hosts: all 
+- hosts: "{{ server }}" 
   gather_facts: false
   tasks:
     - name: Get hostname

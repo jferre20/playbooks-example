@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: "{{ server }}" 
   tasks:
     - name: Get date before change TZ
       ansible.builtin.shell: date
@@ -10,7 +10,7 @@
 
     - name: Set timezone correctly
       community.general.timezone:
-        name: America/Sao_Paulo
+        name: "{{ timezone | default('America/Sao_Paulo') }}"
    
     - name: Get date after change TZ
       ansible.builtin.shell: date
